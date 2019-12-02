@@ -29,38 +29,62 @@ $("#submit").on("click", function(event) {
     $("#name-input").val("");
     $("#role-input").val("");
     $("#time-input").val("");
-    $("frequency-input").val("");
+    $("#frequency-input").val("");
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+
+    var trainName = childSnapshot.val().name;
+    var trainDestination = childSnapshot.val().destination;
+    var trainTime = childSnapshot.val().time;
+    var trainFrequency = childSnapshot.val().frequency;
 
 
-    console.log(snapshot.val().trainInputs.name);
-    console.log(snapshot.val().trainInputs.destination);
-    console.log(snapshot.val().trainInputs.time);
-    console.log(snapshot.val().trainInputs.frequency);
+    console.log(trainName);
+    console.log(trainDestination);
+    console.log(trainTime);
+    console.log(trainFrequency);
 
-    var newLi = $("<li>");
-    newLi.addClass("list-group-item");
-    var rowOne = $("<div>");
-    rowOne.addClass("row");
-    var nameDiv = $("<div>" + snapshot.val().newEmployee.name + "</div>");
-    nameDiv.addClass("col employee-tabl-two");
-    var roleDiv = $("<div>" + snapshot.val().newEmployee.role + "</div>");
-    roleDiv.addClass("col role-table-two");
-    var startDateDiv = $("<div>" + snapshot.val().newEmployee.startDate + "</div>");
-    startDateDiv.addClass("col start-date-table-two");
-    var monthlyRateDiv = $("<div>" + snapshot.val().newEmployee.monthlyRate + "<div>");
-    monthlyRateDiv.addClass("col monthly-rate-table-two");
-    var monthWorkedDiv = $("<div>");
-    monthWorkedDiv.addClass("col months-worked-table-two");
-    var totalBilledDiv = $("<div>");
-    totalBilledDiv.addClass("col total-billed-table-two");
+    var trainTimeConverted = moment(trainTime, "HH:mm").subtract(1, "years");
+    var timeDiff = moment().diff(moment(trainTimeConverted), "minutes");
+    var timeRemaining = timeDiff % trainFrequency;
+    var minutesAway = trainFrequency - timeRemaining;
+    var nextArrival = moment().add(minutesAway, "minutes");
+
+    var addRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(trainFrequency),
+        $("<td>").text(moment(nextArrival).format("hh:mm")),
+        $("<td>").text(minutesAway),
+    )
+    
+
+
+    // var newLi = $("<li>");
+    // newLi.addClass("list-group-item");
+    // var rowOne = $("<div>");
+    // rowOne.addClass("row");
+    // var nameDiv = $("<div>" + snapshot.val().newEmployee.name + "</div>");
+    // nameDiv.addClass("col employee-tabl-two");
+    // var roleDiv = $("<div>" + snapshot.val().newEmployee.role + "</div>");
+    // roleDiv.addClass("col role-table-two");
+    // var startDateDiv = $("<div>" + snapshot.val().newEmployee.startDate + "</div>");
+    // startDateDiv.addClass("col start-date-table-two");
+    // var monthlyRateDiv = $("<div>" + snapshot.val().newEmployee.monthlyRate + "<div>");
+    // monthlyRateDiv.addClass("col monthly-rate-table-two");
+    // var monthWorkedDiv = $("<div>");
+    // monthWorkedDiv.addClass("col months-worked-table-two");
+    // var totalBilledDiv = $("<div>");
+    // totalBilledDiv.addClass("col total-billed-table-two");
           
-    rowOne.append(nameDiv);
-    rowOne.append(roleDiv);
-    rowOne.append(startDateDiv);
-    rowOne.append(monthlyRateDiv);
-    rowOne.append(monthWorkedDiv);
-    rowOne.append(totalBilledDiv);
-    newLi.append(rowOne);
-    $("ul").append(newLi);
+    // rowOne.append(nameDiv);
+    // rowOne.append(roleDiv);
+    // rowOne.append(startDateDiv);
+    // rowOne.append(monthlyRateDiv);
+    // rowOne.append(monthWorkedDiv);
+    // rowOne.append(totalBilledDiv);
+    // newLi.append(rowOne);
+    // $("ul").append(newLi);
 
-      });
+});
