@@ -6,11 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Timesheet</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
     <style type="text/css">
         .jumbotron-fluid {
-            background-color: black;
+            background-color: darkred;
             color: white;
             text-align: center;
+        }
+
+        .card-header {
+            background-color: navy;
+            color: white;
+            font-weight: 700;
         }
 
         #table-heading, #jumbo-heading {
@@ -23,8 +32,8 @@
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container" id="jumbo-heading">
-                <h1 class="display-4">Employee Data Management</h1>
-                <p class="lead">A Comprehensive Directory of Employee Billable Hours</p>
+                <h1 class="display-4">Train Schedule</h1>
+                <p class="lead">List of Train Times and ETA</p>
             </div>
         </div>
 
@@ -61,29 +70,29 @@
 
         <div class="card">
             <div class="card-header">
-            Add Employee
+            Add Train
             </div>
     
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
-                        <input type="text" class="form-control" id="name-input">
+                        <label for="exampleFormControlInput1">Train Name</label>
+                        <input type="text" class="form-control" id="train-name-input">
                     </div>
 
                     <div class="form-group">
-                         <label for="exampleFormControlInput2">Role</label>
-                         <input type="text" class="form-control" id="role-input">
+                         <label for="exampleFormControlInput2">Destination</label>
+                         <input type="text" class="form-control" id="destination-input">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlInput3">Start Date (MM/DD/YY)</label>
-                        <input type="text" class="form-control" id="start-date-input">
+                        <label for="exampleFormControlInput3">First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="time-input">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlInput4">Monthly Rate</label>
-                        <input type="text" class="form-control" id="monthly-rate-input">
+                        <label for="exampleFormControlInput4">Frequency</label>
+                        <input type="text" class="form-control" id="frequency-input">
                     </div>
 
                     <button type="submit" class="btn btn-primary" id="submit">Submit</button>
@@ -91,3 +100,10 @@
             </div>
         </div>
     </div> 
+
+    <script src="logic.js"></script>
+
+</body>
+
+</html>
+
