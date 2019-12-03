@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Timesheet</title>
+    <title>Train Scheduler</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <style type="text/css">
         .jumbotron-fluid {
@@ -33,7 +33,7 @@
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container" id="jumbo-heading">
-                <h1 class="display-4">Train Schedule</h1>
+                <h1 class="display-4">Train Scheduler</h1>
                 <p class="lead">List of Train Arrival Times and ETA</p>
             </div>
         </div>
@@ -46,20 +46,20 @@
             </div>
             <ul class="list-group list-group-flush" id="table-heading">
                 <li class="list-group-item">
-                    <div class="row">
-                        <div class="col train-name-table">
+                    <div class="row" id="the-header">
+                        <div class="col">
                             Train Name
                         </div>
-                        <div class="col destination-table">
+                        <div class="col">
                             Destination
                         </div>
-                        <div class="col frequency-table">
+                        <div class="col">
                             Frequency
                         </div>
-                        <div class="col next-arrival-table">
+                        <div class="col">
                             Next Arrival
                         </div>
-                        <div class="col minutes-away-table">
+                        <div class="col">
                             Minutes Away
                         </div>
                     </div>

@@ -12,7 +12,7 @@ var database = firebase.database();
 $("#submit").on("click", function(event) {
     event.preventDefault();
 
-    var trainName = $("name-input").val().trim();
+    var trainName = $("#name-input").val().trim();
     var trainDestination = $("#destination-input").val().trim();
     var trainTime = $("#time-input").val().trim();
     var trainFrequency = $("#frequency-input").val().trim();
@@ -27,7 +27,7 @@ $("#submit").on("click", function(event) {
     database.ref().push(trainInputs);
 
     $("#name-input").val("");
-    $("#role-input").val("");
+    $("#destination-input").val("");
     $("#time-input").val("");
     $("#frequency-input").val("");
 });
@@ -38,53 +38,53 @@ database.ref().on("child_added", function(childSnapshot) {
     var trainDestination = childSnapshot.val().destination;
     var trainTime = childSnapshot.val().time;
     var trainFrequency = childSnapshot.val().frequency;
-
-
-    console.log(trainName);
-    console.log(trainDestination);
-    console.log(trainTime);
-    console.log(trainFrequency);
-
     var trainTimeConverted = moment(trainTime, "HH:mm").subtract(1, "years");
     var timeDiff = moment().diff(moment(trainTimeConverted), "minutes");
     var timeRemaining = timeDiff % trainFrequency;
     var minutesAway = trainFrequency - timeRemaining;
     var nextArrival = moment().add(minutesAway, "minutes");
-
-    var addRow = $("<tr>").append(
-        $("<td>").text(trainName),
-        $("<td>").text(trainDestination),
-        $("<td>").text(trainFrequency),
-        $("<td>").text(moment(nextArrival).format("hh:mm")),
-        $("<td>").text(minutesAway),
-    )
     
+    console.log(trainName);
+    console.log(trainDestination);
+    console.log(trainFrequency);
+    console.log(moment(nextArrival).format("HH:mm"));
+    console.log(minutesAway);
 
+    var newRow = $(".col").append(
+        $("<div>").html(trainName),
+        $("<div>").html(trainDestination),
+        $("<div>").html(trainFrequency),
+        $("<div>").html(moment(nextArrival).format("HH:mm")),
+        $("<div>").html(minutesAway)
+    )
 
-    // var newLi = $("<li>");
-    // newLi.addClass("list-group-item");
-    // var rowOne = $("<div>");
-    // rowOne.addClass("row");
-    // var nameDiv = $("<div>" + snapshot.val().newEmployee.name + "</div>");
-    // nameDiv.addClass("col employee-tabl-two");
-    // var roleDiv = $("<div>" + snapshot.val().newEmployee.role + "</div>");
-    // roleDiv.addClass("col role-table-two");
-    // var startDateDiv = $("<div>" + snapshot.val().newEmployee.startDate + "</div>");
-    // startDateDiv.addClass("col start-date-table-two");
-    // var monthlyRateDiv = $("<div>" + snapshot.val().newEmployee.monthlyRate + "<div>");
-    // monthlyRateDiv.addClass("col monthly-rate-table-two");
-    // var monthWorkedDiv = $("<div>");
-    // monthWorkedDiv.addClass("col months-worked-table-two");
-    // var totalBilledDiv = $("<div>");
-    // totalBilledDiv.addClass("col total-billed-table-two");
-          
-    // rowOne.append(nameDiv);
-    // rowOne.append(roleDiv);
-    // rowOne.append(startDateDiv);
-    // rowOne.append(monthlyRateDiv);
-    // rowOne.append(monthWorkedDiv);
-    // rowOne.append(totalBilledDiv);
-    // newLi.append(rowOne);
-    // $("ul").append(newLi);
+    // var newRow = $("<div>");
+    // newRow.addClass("row");
+    // newRow.attr("id", "the-result");
+    // var nameDiv = $("<div>" + trainName + "</div>");
+    // nameDiv.addClass("col");
+    // var trainDestDiv = $("<div>" + trainDestination + "</div>");
+    // trainDestDiv.addClass("col");
+    // var frequencyDiv = $("<div>" + trainFrequency + "</div>");
+    // frequencyDiv.addClass("col");
+    // var arrivalDiv = $("<div>" + (moment(nextArrival).format("HH:mm")) + "</div>");
+    // arrivalDiv.addClass("col");
+    // var timeDiv = $("<div>" + minutesAway + "</div>");
+    // timeDiv.addClass("col");
+
+    // $("#the-header").append(newRow);
+    // // $("#the-result").html(nameDiv);
+    // // $("#the-result").html(trainDestDiv);
+    // // $("#the-result").html(frequencyDiv);
+    // // $("#the-result").html(arrivalDiv);
+    // // $("#the-result").html(timeDiv);
+
+    // console.log(nameDiv);
+    // console.log(trainDestDiv);
+    // console.log(frequencyDiv);
+    // console.log(arrivalDiv);
+    // console.log(timeDiv);
+
+    
 
 });
