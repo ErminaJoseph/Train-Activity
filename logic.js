@@ -50,41 +50,14 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(moment(nextArrival).format("HH:mm"));
     console.log(minutesAway);
 
-    var newRow = $(".col").append(
-        $("<div>").html(trainName),
-        $("<div>").html(trainDestination),
-        $("<div>").html(trainFrequency),
-        $("<div>").html(moment(nextArrival).format("HH:mm")),
-        $("<div>").html(minutesAway)
-    )
+    var addRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(trainFrequency),
+        $("<td>").text(moment(nextArrival).format("HH:mm")),
+        $("<td>").text(minutesAway)
+    );
 
-    // var newRow = $("<div>");
-    // newRow.addClass("row");
-    // newRow.attr("id", "the-result");
-    // var nameDiv = $("<div>" + trainName + "</div>");
-    // nameDiv.addClass("col");
-    // var trainDestDiv = $("<div>" + trainDestination + "</div>");
-    // trainDestDiv.addClass("col");
-    // var frequencyDiv = $("<div>" + trainFrequency + "</div>");
-    // frequencyDiv.addClass("col");
-    // var arrivalDiv = $("<div>" + (moment(nextArrival).format("HH:mm")) + "</div>");
-    // arrivalDiv.addClass("col");
-    // var timeDiv = $("<div>" + minutesAway + "</div>");
-    // timeDiv.addClass("col");
-
-    // $("#the-header").append(newRow);
-    // // $("#the-result").html(nameDiv);
-    // // $("#the-result").html(trainDestDiv);
-    // // $("#the-result").html(frequencyDiv);
-    // // $("#the-result").html(arrivalDiv);
-    // // $("#the-result").html(timeDiv);
-
-    // console.log(nameDiv);
-    // console.log(trainDestDiv);
-    // console.log(frequencyDiv);
-    // console.log(arrivalDiv);
-    // console.log(timeDiv);
-
-    
+    $("#train-table > tbody").append(addRow);
 
 });
