@@ -1,6 +1,7 @@
 body {
     background: url("../images/brickwall.jpg") no-repeat fixed center;
 }
+
 .jumbotron-fluid {
     background-color: darkred;
     color: white;
