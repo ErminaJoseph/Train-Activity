@@ -1,0 +1,21 @@
+body {
+    background: url("../images/brickwall.jpg") no-repeat fixed center;
+}
+.jumbotron-fluid {
+    background-color: darkred;
+    color: white;
+    text-align: center;
+    border: solid;
+    border-color: white;
+    font-family: 'Abril Fatface', cursive;
+}
+
+.container {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.card-header {
+    background-color: darkred;
+    color: white;
+    font-weight: 700;
+}
